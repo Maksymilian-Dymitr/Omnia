@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -256,15 +257,15 @@ export default function Home() {
               <a data-underline href="#areas">The six areas</a>
               <a data-underline href="#engine">Automation</a>
               <a data-underline href="#record">The interface</a>
-              <a data-underline href="#access">Access</a>
+              <Link data-underline href="/plans">Plans</Link>
             </nav>
-            <button
-              type="button"
+            <Link
+              href="/signin"
               className="btn hover:bg-[rgba(208,164,95,.14)]"
-              style={{ border: "1px solid #d0a45f", color: "#d0a45f", borderRadius: "var(--radius-sm)" }}
+              style={{ border: "1px solid #d0a45f", color: "#d0a45f", borderRadius: "var(--radius-sm)", textDecoration: "none" }}
             >
-              Request access
-            </button>
+              Sign in
+            </Link>
           </div>
         </header>
 
@@ -328,20 +329,20 @@ export default function Home() {
               one ledger, no exports.
             </p>
             <div data-hero-4 style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "flex-end" }}>
-              <button
-                type="button"
+              <Link
+                href="/plans"
                 className="btn hover:bg-[rgba(208,164,95,.14)]"
-                style={{ border: "1px solid #d0a45f", color: "#d0a45f", borderRadius: "var(--radius-sm)", padding: "10px 20px", fontSize: "15px" }}
+                style={{ border: "1px solid #d0a45f", color: "#d0a45f", borderRadius: "var(--radius-sm)", padding: "10px 20px", fontSize: "15px", textDecoration: "none" }}
               >
-                Request access
-              </button>
-              <button
-                type="button"
+                View plans
+              </Link>
+              <a
+                href="#record"
                 className="btn hover:bg-[rgba(236,231,224,.08)]"
-                style={{ border: "1px solid rgba(236,231,224,.4)", color: "#ece7e0", borderRadius: "var(--radius-sm)", padding: "10px 20px", fontSize: "15px" }}
+                style={{ border: "1px solid rgba(236,231,224,.4)", color: "#ece7e0", borderRadius: "var(--radius-sm)", padding: "10px 20px", fontSize: "15px", textDecoration: "none" }}
               >
                 See the interface
-              </button>
+              </a>
             </div>
           </div>
 
@@ -759,24 +760,27 @@ export default function Home() {
           >
             <div>
               <h3 data-reveal style={{ fontFamily: "var(--font-heading)", fontWeight: 400, fontSize: "clamp(28px,3vw,40px)", margin: 0 }}>
-                Early access
+                Ready when you are
               </h3>
               <p style={{ fontSize: "15.5px", lineHeight: 1.64, margin: "16px 0 0", maxWidth: "52ch", color: "var(--color-neutral-800)" }}>
-                Omnia is in build. Leave an address and we will write when the first area is ready for real books — one
-                letter, no urgency.
+                Omnia is in build. Pick the plan that fits your company, or sign in if you already have a seat.
               </p>
             </div>
-            <div data-reveal data-delay="2" style={{ display: "flex", gap: "12px", alignItems: "stretch", maxWidth: "480px", width: "100%" }}>
-              <input
-                className="input"
-                type="email"
-                placeholder="you@company.com"
-                aria-label="Email address"
-                style={{ flex: 1, minHeight: "40px", borderRadius: "var(--radius-sm)" }}
-              />
-              <button type="button" className="btn btn-primary" style={{ minHeight: "40px", borderRadius: "var(--radius-sm)" }}>
-                Request access
-              </button>
+            <div data-reveal data-delay="2" style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              <Link
+                href="/plans"
+                className="btn btn-primary"
+                style={{ minHeight: "40px", borderRadius: "var(--radius-sm)", textDecoration: "none" }}
+              >
+                View plans
+              </Link>
+              <Link
+                href="/signin"
+                className="btn"
+                style={{ minHeight: "40px", borderRadius: "var(--radius-sm)", border: "1px solid var(--color-divider)", color: "var(--color-text)", textDecoration: "none" }}
+              >
+                Sign in
+              </Link>
             </div>
           </section>
 
@@ -795,7 +799,8 @@ export default function Home() {
             <span>Omnia — a business operating system. In build, 2026.</span>
             <span style={{ display: "flex", gap: "20px" }}>
               <a href="#areas">The six areas</a>
-              <a href="#access">Request access</a>
+              <Link href="/plans">Plans</Link>
+              <Link href="/signin">Sign in</Link>
             </span>
           </footer>
         </div>
