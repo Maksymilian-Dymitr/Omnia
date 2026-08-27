@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./support.js"></script>
+</head>
+
+<body>
+  <x-dc>
+    <helmet>
+      <link rel="stylesheet" href="_ds/classical-c19876bc-4343-4364-add3-505efeba2d1f/styles.css">
+      <script src="_ds/classical-c19876bc-4343-4364-add3-505efeba2d1f/_ds_bundle.js"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+      <script src="./image-slot.js"></script>
+      <style>
+        body {
+          margin: 0;
+          text-wrap: pretty;
+          background: #191817;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        a {
+          color: var(--color-accent-700);
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: var(--color-accent);
+          text-decoration: underline;
+        }
+
+        .on-dark a {
+          color: #d0a45f;
+        }
+
+        .on-dark a:hover {
+          color: #eed09b;
+        }
+
+        @keyframes om-rise {
+          from {
+            opacity: 0;
+            transform: translateY(24px)
+          }
+
+          to {
+            opacity: 1;
+            transform: none
+          }
+        }
+
+        @keyframes om-wipe {
+          from {
+            transform: scaleX(0)
+          }
+
+          to {
+            transform: scaleX(1)
+          }
+        }
+
+        @keyframes om-plate {
+          from {
+            opacity: 0;
+            transform: scale(.975) translateY(26px)
+          }
+
+          to {
+            opacity: 1;
+            transform: none
+          }
+        }
+
+        @keyframes om-drift {
+          from {
+            transform: translate3d(0, 0, 0)
+          }
+
+          to {
+            transform: translate3d(-1.2vw, 1.8vh, 0)
+          }
+        }
+
+        @keyframes om-count {
+          from {
+            opacity: 0;
+            transform: translateY(14px) scale(.94)
+          }
+
+          to {
+            opacity: 1;
+            transform: none
+          }
+        }
+
+        [data-hero] {
+          animation: om-rise 1s cubic-bezier(.16, .8, .24, 1) both;
+        }
+
+        [data-hero-2] {
+          animation: om-rise 1s cubic-bezier(.16, .8, .24, 1) .12s both;
+        }
+
+        [data-hero-3] {
+          animation: om-rise 1s cubic-bezier(.16, .8, .24, 1) .24s both;
+        }
+
+        [data-hero-4] {
+          animation: om-rise 1s cubic-bezier(.16, .8, .24, 1) .36s both;
+        }
+
+        [data-hero-5] {
+          animation: om-rise 1s cubic-bezier(.16, .8, .24, 1) .48s both;
+        }
+
+        @keyframes om-fade {
+          from {
+            opacity: 0
+          }
+
+          to {
+            opacity: 1
+          }
+        }
+
+        @keyframes om-pulse {
+
+          0%,
+          100% {
+            opacity: .25;
+            transform: scale(1)
+          }
+
+          50% {
+            opacity: 1;
+            transform: scale(1.35)
+          }
+        }
+
+        @keyframes om-flow {
+          to {
+            stroke-dashoffset: -160
+          }
+        }
+
+        @keyframes om-blink {
+
+          0%,
+          45% {
+            opacity: 1
+          }
+
+          55%,
+          100% {
+            opacity: 0
+          }
+        }
+
+        [data-ghost] {
+          animation: om-fade 2s ease-out both;
+          will-change: transform;
+        }
+
+        /* scroll progress hairline */
+        [data-progress] {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          z-index: 40;
+          pointer-events: none;
+        }
+
+        [data-progress] i {
+          display: block;
+          height: 100%;
+          background: #d0a45f;
+          transform: scaleX(0);
+          transform-origin: left;
+        }
+
+        /* condensing masthead */
+        [data-nav] {
+          transition: padding .35s cubic-bezier(.16, .8, .24, 1), background .35s ease, backdrop-filter .35s ease;
+        }
+
+        [data-nav][data-scrolled] {
+          padding-top: 9px;
+          padding-bottom: 9px;
+          background: rgba(25, 24, 23, .86);
+          backdrop-filter: blur(8px);
+        }
+
+        /* live ticker */
+        [data-ticker] {
+          position: relative;
+          height: 26px;
+          overflow: hidden;
+        }
+
+        [data-tick] {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          opacity: 0;
+          transform: translateY(14px);
+          transition: opacity .6s ease, transform .6s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        [data-tick][data-active] {
+          opacity: 1;
+          transform: none;
+        }
+
+        [data-tick][data-past] {
+          opacity: 0;
+          transform: translateY(-14px);
+        }
+
+        [data-pulse] {
+          animation: om-pulse 2.4s ease-in-out infinite;
+        }
+
+        [data-caret] {
+          animation: om-blink 1.1s step-end infinite;
+        }
+
+        /* splash */
+        @keyframes om-splash-letter {
+          from {
+            opacity: 0;
+            transform: translateY(26px)
+          }
+
+          to {
+            opacity: 1;
+            transform: none
+          }
+        }
+
+        @keyframes om-splash-rule {
+          from {
+            transform: scaleX(0)
+          }
+
+          to {
+            transform: scaleX(1)
+          }
+        }
+
+        [data-splash] {
+          position: fixed;
+          inset: 0;
+          z-index: 60;
+        }
+
+        [data-splash] [data-panel] {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 50.2%;
+          background: #191817;
+          transition: transform 1s cubic-bezier(.76, 0, .24, 1);
+        }
+
+        [data-splash] [data-panel="top"] {
+          top: 0;
+        }
+
+        [data-splash] [data-panel="bottom"] {
+          bottom: 0;
+        }
+
+        [data-splash] [data-splash-body] {
+          position: absolute;
+          inset: 0;
+          display: grid;
+          place-content: center;
+          justify-items: center;
+          text-align: center;
+          transition: opacity .5s ease, transform .8s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        [data-splash] [data-letter] {
+          display: inline-block;
+          animation: om-splash-letter .8s cubic-bezier(.16, .8, .24, 1) both;
+        }
+
+        [data-splash] [data-splash-rule] {
+          transform-origin: center;
+          animation: om-splash-rule 1.1s cubic-bezier(.16, .8, .24, 1) .5s both;
+        }
+
+        [data-splash][data-done] {
+          pointer-events: none;
+        }
+
+        [data-splash][data-done] [data-splash-body] {
+          opacity: 0;
+          transform: translateY(-14px);
+        }
+
+        [data-splash][data-done] [data-panel="top"] {
+          transform: translateY(-100%);
+        }
+
+        [data-splash][data-done] [data-panel="bottom"] {
+          transform: translateY(100%);
+        }
+
+        [data-splash][data-gone] {
+          display: none;
+        }
+
+        body[data-splash-on] [data-hero],
+        body[data-splash-on] [data-hero-2],
+        body[data-splash-on] [data-hero-3],
+        body[data-splash-on] [data-hero-4],
+        body[data-splash-on] [data-hero-5],
+        body[data-splash-on] [data-ghost] {
+          animation-play-state: paused;
+        }
+
+        /* automation flow */
+        [data-flow-line] {
+          stroke-dasharray: 10 10;
+          animation: om-flow 4s linear infinite;
+        }
+
+        [data-flow-dot] {
+          animation: om-pulse 2s ease-in-out infinite;
+        }
+
+        [data-hairline] {
+          transform: scaleX(0);
+          transform-origin: left;
+          animation: om-wipe 1.1s cubic-bezier(.16, .8, .24, 1) .3s both;
+        }
+
+        [data-reveal] {
+          opacity: 0;
+        }
+
+        [data-reveal][data-shown] {
+          animation: om-rise .8s cubic-bezier(.16, .8, .24, 1) both;
+        }
+
+        [data-figure] {
+          opacity: 0;
+        }
+
+        [data-figure][data-shown] {
+          animation: om-count .7s cubic-bezier(.16, .8, .24, 1) both;
+        }
+
+        [data-plate] {
+          opacity: 0;
+        }
+
+        [data-plate][data-shown] {
+          animation: om-plate 1.1s cubic-bezier(.16, .8, .24, 1) both;
+        }
+
+        [data-shown][data-delay="1"] {
+          animation-delay: .09s;
+        }
+
+        [data-shown][data-delay="2"] {
+          animation-delay: .18s;
+        }
+
+        [data-shown][data-delay="3"] {
+          animation-delay: .27s;
+        }
+
+        [data-shown][data-delay="4"] {
+          animation-delay: .36s;
+        }
+
+        [data-shown][data-delay="5"] {
+          animation-delay: .45s;
+        }
+
+        [data-row] {
+          transition: background .3s ease, padding-left .3s ease;
+        }
+
+        [data-row] [data-num] {
+          transition: transform .4s cubic-bezier(.16, .8, .24, 1), color .3s ease;
+        }
+
+        [data-row]:hover {
+          padding-left: 12px;
+        }
+
+        [data-row]:hover [data-num] {
+          transform: translateX(10px);
+          color: var(--color-accent);
+        }
+
+        .btn,
+        [data-lift] {
+          transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .btn:hover {
+          transform: translateY(-2px);
+        }
+
+        [data-lift]:hover {
+          transform: translateY(-3px);
+        }
+
+        [data-underline] {
+          position: relative;
+        }
+
+        [data-underline]::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -4px;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        [data-underline]:hover::after {
+          transform: scaleX(1);
+        }
+
+        [data-underline]:hover {
+          text-decoration: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+          [data-hero],
+          [data-hero-2],
+          [data-hero-3],
+          [data-hero-4],
+          [data-hero-5],
+          [data-ghost],
+          [data-hairline],
+          [data-reveal],
+          [data-figure],
+          [data-plate] {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+      </style>
+    </helmet>
+
+    <div style="font-family:var(--font-body);color:var(--color-text)">
+
+      <!-- ═══ Splash ═══ -->
+      <div data-splash>
+        <div data-panel="top"></div>
+        <div data-panel="bottom"></div>
+        <div data-splash-body style="color:#ece7e0;font-family:var(--font-body)">
+          <div
+            style="font-family:var(--font-heading);font-weight:400;font-size:clamp(38px,7vw,86px);letter-spacing:.3em;line-height:1;padding-left:.3em">
+            <span data-letter style="animation-delay:0s">O</span><span data-letter
+              style="animation-delay:.07s">M</span><span data-letter style="animation-delay:.14s">N</span><span
+              data-letter style="animation-delay:.21s">I</span><span data-letter style="animation-delay:.28s">A</span>
+          </div>
+          <div data-splash-rule style="width:min(280px,52vw);height:1px;background:#d0a45f;margin:26px 0 22px"></div>
+          <div
+            style="font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(236,231,224,.62);animation:om-fade 1s ease-out .9s both">
+            A business operating system</div>
+        </div>
+      </div>
+
+      <!-- ═══ Hero, on the colophon ground ═══ -->
+      <section class="on-dark"
+        style="position:relative;background:#191817;color:#ece7e0;overflow:hidden;border-bottom:1px solid #d0a45f">
+
+        <div data-ghost
+          style="position:absolute;right:-2vw;top:-6vh;font-family:var(--font-heading);font-weight:400;font-size:46vw;line-height:.78;color:transparent;-webkit-text-stroke:1px rgba(208,164,95,.22);pointer-events:none;user-select:none;font-variant-numeric:tabular-nums">
+          06</div>
+
+        <div data-progress><i></i></div>
+
+        <header data-nav style="position:relative;border-bottom:1px solid rgba(236,231,224,.18);padding:0">
+          <div
+            style="max-width:1240px;margin:0 auto;padding:18px clamp(20px,5vw,72px);display:flex;align-items:center;gap:28px">
+            <span
+              style="font-family:var(--font-heading);font-size:21px;font-weight:500;letter-spacing:.3em">OMNIA</span>
+            <nav style="display:flex;gap:24px;margin-left:auto;font-size:13.5px">
+              <a data-underline href="#areas">The six areas</a>
+              <a data-underline href="#engine">Automation</a>
+              <a data-underline href="#record">The interface</a>
+              <a data-underline href="#access">Access</a>
+            </nav>
+            <button type="button" class="btn"
+              style="border:1px solid #d0a45f;color:#d0a45f;border-radius:var(--radius-sm)"
+              style-hover="background:rgba(208,164,95,.14)">Request access</button>
+          </div>
+        </header>
+
+        <div
+          style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,9vw,120px) clamp(20px,5vw,72px) 0">
+          <div data-hero
+            style="display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(236,231,224,.62);margin-bottom:clamp(28px,4vw,48px)">
+            <span data-hairline style="width:52px;height:1px;background:#d0a45f"></span>
+            <span>A business operating system</span>
+          </div>
+
+          <h1 data-hero-2
+            style="font-family:var(--font-heading);font-weight:400;font-size:clamp(52px,10vw,146px);line-height:.94;letter-spacing:-.02em;margin:0 0 0 -.05em;max-width:16ch">
+            <span style="display:block">One system to run</span>
+            <span style="display:block;color:#d0a45f">the whole company.</span>
+          </h1>
+
+          <div
+            style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);margin-top:clamp(36px,5vw,64px);align-items:end">
+            <p data-hero-3
+              style="font-size:17px;line-height:1.66;margin:0;color:rgba(236,231,224,.8);max-width:52ch;text-align:justify;hyphens:auto">
+              Customers, invoicing, payments and tax. The pipeline and the client portal. The boards your team works
+              from, the automations that carry work between them, and one record that accounts for all of it. Six areas,
+              one ledger, no exports.</p>
+            <div data-hero-4 style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end">
+              <button type="button" class="btn"
+                style="border:1px solid #d0a45f;color:#d0a45f;border-radius:var(--radius-sm);padding:10px 20px;font-size:15px"
+                style-hover="background:rgba(208,164,95,.14)">Request access</button>
+              <button type="button" class="btn"
+                style="border:1px solid rgba(236,231,224,.4);color:#ece7e0;border-radius:var(--radius-sm);padding:10px 20px;font-size:15px"
+                style-hover="background:rgba(236,231,224,.08)">See the interface</button>
+            </div>
+          </div>
+
+          <div data-hero-5 data-ticker
+            style="margin-top:clamp(36px,5vw,64px);font-size:13.5px;color:rgba(236,231,224,.72);font-variant-numeric:tabular-nums">
+            <div data-tick data-active><span data-pulse
+                style="width:7px;height:7px;border-radius:50%;background:#d0a45f;flex:0 0 7px"></span><span>09:14 —
+                Payment matched to invoice #4173, $11,050. Awaiting your approval.</span></div>
+            <div data-tick><span data-pulse
+                style="width:7px;height:7px;border-radius:50%;background:#d0a45f;flex:0 0 7px"></span><span>09:22 —
+                Order intake read a supplier email and drafted 6 lines. Held for review.</span></div>
+            <div data-tick><span data-pulse
+                style="width:7px;height:7px;border-radius:50%;background:#d0a45f;flex:0 0 7px"></span><span>09:31 —
+                Proposal opened in the client portal by Norrland Bygg AB.</span></div>
+            <div data-tick><span data-pulse
+                style="width:7px;height:7px;border-radius:50%;background:#d0a45f;flex:0 0 7px"></span><span>09:40 — VAT
+                return prepared for period 08. One signature outstanding.</span></div>
+          </div>
+
+          <div data-hero-5
+            style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid rgba(236,231,224,.28);margin-top:clamp(44px,6vw,88px)">
+            <a href="#areas" data-lift
+              style="padding:16px 10px 20px 0;border-right:1px solid rgba(236,231,224,.16);text-decoration:none"><span
+                style="display:block;font-size:10.5px;letter-spacing:.18em;color:rgba(236,231,224,.5);font-variant-numeric:tabular-nums">01</span><span
+                style="display:block;font-family:var(--font-heading);font-size:19px;margin-top:4px;color:#ece7e0">Run</span></a>
+            <a href="#areas" data-lift
+              style="padding:16px 10px 20px;border-right:1px solid rgba(236,231,224,.16);text-decoration:none"><span
+                style="display:block;font-size:10.5px;letter-spacing:.18em;color:rgba(236,231,224,.5);font-variant-numeric:tabular-nums">02</span><span
+                style="display:block;font-family:var(--font-heading);font-size:19px;margin-top:4px;color:#ece7e0">Grow</span></a>
+            <a href="#areas" data-lift
+              style="padding:16px 10px 20px;border-right:1px solid rgba(236,231,224,.16);text-decoration:none"><span
+                style="display:block;font-size:10.5px;letter-spacing:.18em;color:rgba(236,231,224,.5);font-variant-numeric:tabular-nums">03</span><span
+                style="display:block;font-family:var(--font-heading);font-size:19px;margin-top:4px;color:#ece7e0">Work</span></a>
+            <a href="#engine" data-lift
+              style="padding:16px 10px 20px;border-right:1px solid rgba(236,231,224,.16);text-decoration:none"><span
+                style="display:block;font-size:10.5px;letter-spacing:.18em;color:rgba(236,231,224,.5);font-variant-numeric:tabular-nums">04</span><span
+                style="display:block;font-family:var(--font-heading);font-size:19px;margin-top:4px;color:#ece7e0">Automate</span></a>
+            <a href="#areas" data-lift
+              style="padding:16px 10px 20px;border-right:1px solid rgba(236,231,224,.16);text-decoration:none"><span
+                style="display:block;font-size:10.5px;letter-spacing:.18em;color:rgba(236,231,224,.5);font-variant-numeric:tabular-nums">05</span><span
+                style="display:block;font-family:var(--font-heading);font-size:19px;margin-top:4px;color:#ece7e0">Reports</span></a>
+            <a href="#areas" data-lift style="padding:16px 0 20px 10px;text-decoration:none"><span
+                style="display:block;font-size:10.5px;letter-spacing:.18em;color:rgba(236,231,224,.5);font-variant-numeric:tabular-nums">06</span><span
+                style="display:block;font-family:var(--font-heading);font-size:19px;margin-top:4px;color:#ece7e0">Settings</span></a>
+          </div>
+        </div>
+      </section>
+
+      <div style="background:var(--color-bg)">
+        <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+
+          <!-- ═══ Figures ═══ -->
+          <section style="padding:clamp(40px,5vw,72px) 0 clamp(34px,4vw,56px)">
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px">
+              <div data-figure style="border-top:2px solid var(--color-accent);padding-top:16px">
+                <p data-count
+                  style="font-family:var(--font-heading);font-weight:400;font-size:clamp(44px,5vw,74px);line-height:1;margin:0 0 0 -.042em;font-variant-numeric:tabular-nums;color:var(--color-accent)">
+                  6</p>
+                <p
+                  style="font-size:12.5px;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-700);margin:14px 0 0;max-width:22ch">
+                  Areas, one login, one permission model</p>
+              </div>
+              <div data-figure data-delay="1" style="border-top:1px solid var(--color-text);padding-top:16px">
+                <p data-count
+                  style="font-family:var(--font-heading);font-weight:400;font-size:clamp(44px,5vw,74px);line-height:1;margin:0 0 0 -.129em;font-variant-numeric:tabular-nums">
+                  1</p>
+                <p
+                  style="font-size:12.5px;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-700);margin:14px 0 0;max-width:22ch">
+                  Customer record, shared by every area</p>
+              </div>
+              <div data-figure data-delay="2" style="border-top:1px solid var(--color-text);padding-top:16px">
+                <p data-count
+                  style="font-family:var(--font-heading);font-weight:400;font-size:clamp(44px,5vw,74px);line-height:1;margin:0 0 0 -.042em;font-variant-numeric:tabular-nums">
+                  0</p>
+                <p
+                  style="font-size:12.5px;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-700);margin:14px 0 0;max-width:22ch">
+                  Spreadsheets between your tools</p>
+              </div>
+              <div data-figure data-delay="3" style="border-top:1px solid var(--color-text);padding-top:16px">
+                <p data-count
+                  style="font-family:var(--font-heading);font-weight:400;font-size:clamp(44px,5vw,74px);line-height:1;margin:0 0 0 -.129em;font-variant-numeric:tabular-nums">
+                  100%</p>
+                <p
+                  style="font-size:12.5px;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-700);margin:14px 0 0;max-width:22ch">
+                  Of actions written to the audit trail</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ═══ The six areas, as a register ═══ -->
+          <section id="areas" style="padding:clamp(30px,4vw,52px) 0 clamp(40px,5vw,72px)">
+            <div data-reveal
+              style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--color-text);padding-bottom:14px">
+              <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,3.4vw,44px);margin:0">The
+                register of areas</h2>
+              <span
+                style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-neutral-600)">Six,
+                and no seventh</span>
+            </div>
+
+            <div
+              style="display:grid;grid-template-columns:clamp(64px,8vw,120px) minmax(0,4fr) minmax(0,6fr);gap:clamp(16px,3vw,40px);align-items:start;padding:26px 0;border-bottom:1px solid var(--color-divider)"
+              data-row data-reveal style-hover="background:var(--color-accent-100)">
+              <span data-num
+                style="font-family:var(--font-heading);font-size:clamp(34px,4vw,58px);line-height:.9;color:var(--color-accent);font-variant-numeric:tabular-nums">01</span>
+              <div>
+                <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,2.6vw,34px);margin:0">
+                  Run</h3>
+                <span
+                  style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">The
+                  daily business</span>
+              </div>
+              <p
+                style="font-size:15.5px;line-height:1.64;margin:0;color:var(--color-neutral-800);text-align:justify;hyphens:auto">
+                Customers, quotes and invoices, payments matched from the bank feed, VAT prepared for signature,
+                inventory that reserves itself against orders, jobs on a schedule, and support threads attached to the
+                customer they belong to.</p>
+            </div>
+
+            <div
+              style="display:grid;grid-template-columns:clamp(64px,8vw,120px) minmax(0,4fr) minmax(0,6fr);gap:clamp(16px,3vw,40px);align-items:start;padding:26px 0;border-bottom:1px solid var(--color-divider)"
+              data-row data-reveal style-hover="background:var(--color-accent-100)">
+              <span data-num
+                style="font-family:var(--font-heading);font-size:clamp(34px,4vw,58px);line-height:.9;color:var(--color-neutral-400);font-variant-numeric:tabular-nums">02</span>
+              <div>
+                <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,2.6vw,34px);margin:0">
+                  Grow</h3>
+                <span
+                  style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Demand
+                  and clients</span>
+              </div>
+              <p
+                style="font-size:15.5px;line-height:1.64;margin:0;color:var(--color-neutral-800);text-align:justify;hyphens:auto">
+                A pipeline that reads from the same customer record as your invoices, a client portal where proposals
+                are read and signed, marketing lists that respect who has already bought, and a forecast built from what
+                is actually committed.</p>
+            </div>
+
+            <div
+              style="display:grid;grid-template-columns:clamp(64px,8vw,120px) minmax(0,4fr) minmax(0,6fr);gap:clamp(16px,3vw,40px);align-items:start;padding:26px 0;border-bottom:1px solid var(--color-divider)"
+              data-row data-reveal style-hover="background:var(--color-accent-100)">
+              <span data-num
+                style="font-family:var(--font-heading);font-size:clamp(34px,4vw,58px);line-height:.9;color:var(--color-neutral-400);font-variant-numeric:tabular-nums">03</span>
+              <div>
+                <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,2.6vw,34px);margin:0">
+                  Work</h3>
+                <span
+                  style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Execution
+                  and approvals</span>
+              </div>
+              <p
+                style="font-size:15.5px;line-height:1.64;margin:0;color:var(--color-neutral-800);text-align:justify;hyphens:auto">
+                Boards for the work in front of you, planning for the weeks after it, and one approval queue that every
+                other area raises into — so a held payment and a disputed line arrive in the same place, with the same
+                deadline.</p>
+            </div>
+
+            <div
+              style="display:grid;grid-template-columns:clamp(64px,8vw,120px) minmax(0,4fr) minmax(0,6fr);gap:clamp(16px,3vw,40px);align-items:start;padding:26px 0;border-bottom:1px solid var(--color-divider)"
+              data-row data-reveal style-hover="background:var(--color-accent-100)">
+              <span data-num
+                style="font-family:var(--font-heading);font-size:clamp(34px,4vw,58px);line-height:.9;color:var(--color-neutral-400);font-variant-numeric:tabular-nums">04</span>
+              <div>
+                <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,2.6vw,34px);margin:0">
+                  Automate</h3>
+                <span
+                  style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">The
+                  engine</span>
+              </div>
+              <p
+                style="font-size:15.5px;line-height:1.64;margin:0;color:var(--color-neutral-800);text-align:justify;hyphens:auto">
+                A workflow engine with connectors to the systems you already pay for, monitoring that tells you what ran
+                and what was held, and AI-assisted mapping that proposes how an incoming document becomes an order —
+                then waits for you.</p>
+            </div>
+
+            <div
+              style="display:grid;grid-template-columns:clamp(64px,8vw,120px) minmax(0,4fr) minmax(0,6fr);gap:clamp(16px,3vw,40px);align-items:start;padding:26px 0;border-bottom:1px solid var(--color-divider)"
+              data-row data-reveal style-hover="background:var(--color-accent-100)">
+              <span data-num
+                style="font-family:var(--font-heading);font-size:clamp(34px,4vw,58px);line-height:.9;color:var(--color-neutral-400);font-variant-numeric:tabular-nums">05</span>
+              <div>
+                <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,2.6vw,34px);margin:0">
+                  Reports</h3>
+                <span
+                  style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">The
+                  account of record</span>
+              </div>
+              <p
+                style="font-size:15.5px;line-height:1.64;margin:0;color:var(--color-neutral-800);text-align:justify;hyphens:auto">
+                Dashboards for the day, custom tables for the questions nobody anticipated, and compliance exports that
+                carry their own provenance: which definition, which refresh, whose signature, and when.</p>
+            </div>
+
+            <div
+              style="display:grid;grid-template-columns:clamp(64px,8vw,120px) minmax(0,4fr) minmax(0,6fr);gap:clamp(16px,3vw,40px);align-items:start;padding:26px 0;border-bottom:1px solid var(--color-text)"
+              data-row data-reveal style-hover="background:var(--color-accent-100)">
+              <span data-num
+                style="font-family:var(--font-heading);font-size:clamp(34px,4vw,58px);line-height:.9;color:var(--color-neutral-400);font-variant-numeric:tabular-nums">06</span>
+              <div>
+                <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,2.6vw,34px);margin:0">
+                  Settings</h3>
+                <span
+                  style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-neutral-600)">Authority
+                  and access</span>
+              </div>
+              <p
+                style="font-size:15.5px;line-height:1.64;margin:0;color:var(--color-neutral-800);text-align:justify;hyphens:auto">
+                Billing you can read, roles that map to the six areas rather than to a list of switches, security
+                defaults that start closed, and API access for the parts of your business we have not met yet.</p>
+            </div>
+          </section>
+
+          <!-- ═══ Interface plate ═══ -->
+          <section id="record" style="padding:clamp(30px,4vw,56px) 0 clamp(48px,6vw,88px)">
+            <div
+              style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(24px,5vw,72px);align-items:center">
+              <div>
+                <span data-reveal
+                  style="display:block;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:18px">The
+                  interface</span>
+                <h2 data-reveal data-delay="1"
+                  style="font-family:var(--font-heading);font-weight:400;font-size:clamp(32px,3.6vw,48px);line-height:1.08;margin:0">
+                  The whole business on one page, before you touch anything</h2>
+                <p
+                  style="font-size:15.5px;line-height:1.64;margin:22px 0 0;max-width:46ch;color:var(--color-neutral-800);text-align:justify;hyphens:auto">
+                  Omnia opens on the state of the company: what came in, what is owed, what is due to the tax authority,
+                  and the short list of decisions only you can make. Nothing is buried behind a module, and nothing acts
+                  without your word.</p>
+              </div>
+              <figure data-plate class="plate" style="margin:0;box-shadow:var(--shadow-lg)">
+                <image-slot id="omnia-overview-plate" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/10"
+                  placeholder="Overview screenshot"></image-slot>
+              </figure>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- ═══ Automation band ═══ -->
+      <section id="engine" class="on-dark"
+        style="background:#191817;color:#ece7e0;border-top:1px solid #d0a45f;border-bottom:1px solid #d0a45f;position:relative;overflow:hidden">
+        <div data-ghost
+          style="position:absolute;left:-1vw;bottom:-14vh;font-family:var(--font-heading);font-weight:400;font-size:34vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(236,231,224,.1);pointer-events:none;user-select:none">
+          04</div>
+        <div
+          style="position:relative;max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) clamp(20px,5vw,72px)">
+          <span
+            style="display:block;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:#d0a45f;margin-bottom:24px">Automation
+            and the assistant</span>
+          <h2 data-reveal
+            style="font-family:var(--font-heading);font-weight:400;font-size:clamp(34px,5.4vw,74px);line-height:1.02;letter-spacing:-.015em;margin:0;max-width:22ch">
+            Work carries itself.<br><span style="color:#d0a45f">Decisions stay yours.</span></h2>
+          <div data-reveal
+            style="margin-top:clamp(34px,4vw,56px);border:1px solid rgba(236,231,224,.2);padding:20px 22px;max-width:760px">
+            <svg viewBox="0 0 720 96" width="100%" height="96" style="display:block;overflow:visible">
+              <g fill="none" stroke="rgba(236,231,224,.35)" stroke-width="1">
+                <rect x="1" y="30" width="150" height="36"></rect>
+                <rect x="285" y="30" width="150" height="36"></rect>
+                <rect x="569" y="30" width="150" height="36"></rect>
+              </g>
+              <path data-flow-line d="M151 48 H285" fill="none" stroke="#d0a45f" stroke-width="1.4"></path>
+              <path data-flow-line d="M435 48 H569" fill="none" stroke="#d0a45f" stroke-width="1.4"></path>
+              <circle data-flow-dot cx="218" cy="48" r="3.2" fill="#d0a45f"></circle>
+              <circle data-flow-dot cx="502" cy="48" r="3.2" fill="#d0a45f"></circle>
+              <text x="76" y="53" text-anchor="middle" fill="rgba(236,231,224,.86)"
+                font-family="Cormorant Garamond, serif" font-size="16">Supplier email</text>
+              <text x="360" y="53" text-anchor="middle" fill="rgba(236,231,224,.86)"
+                font-family="Cormorant Garamond, serif" font-size="16">Mapped and checked</text>
+              <text x="644" y="53" text-anchor="middle" fill="rgba(236,231,224,.86)"
+                font-family="Cormorant Garamond, serif" font-size="16">Order, held for you</text>
+            </svg>
+            <div
+              style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(236,231,224,.5);margin-top:14px">
+              Live · workflow 014 · 1,904 runs this month<span data-caret style="color:#d0a45f">_</span></div>
+          </div>
+
+          <div
+            style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(40px,5vw,72px);border-top:1px solid rgba(236,231,224,.28)">
+            <div data-reveal data-delay="1" style="padding:26px 32px 0 0;border-right:1px solid rgba(236,231,224,.18)">
+              <h3 style="font-family:var(--font-heading);font-weight:400;font-size:23px;margin:0">Connectors</h3>
+              <p
+                style="font-size:14.5px;line-height:1.62;margin:14px 0 0;color:rgba(236,231,224,.78);text-align:justify;hyphens:auto">
+                Mailboxes, webhooks, bank feeds and ledger exports, each with its own credentials, its own retries and
+                its own record of what it touched.</p>
+            </div>
+            <div data-reveal data-delay="2" style="padding:26px 32px 0;border-right:1px solid rgba(236,231,224,.18)">
+              <h3 style="font-family:var(--font-heading);font-weight:400;font-size:23px;margin:0">Assisted mapping</h3>
+              <p
+                style="font-size:14.5px;line-height:1.62;margin:14px 0 0;color:rgba(236,231,224,.78);text-align:justify;hyphens:auto">
+                The engine proposes how a supplier's fields become yours, shows its confidence for each one, and holds
+                anything it is unsure of for a person to confirm.</p>
+            </div>
+            <div data-reveal data-delay="3" style="padding:26px 0 0 32px">
+              <h3 style="font-family:var(--font-heading);font-weight:400;font-size:23px;margin:0">The assistant</h3>
+              <p
+                style="font-size:14.5px;line-height:1.62;margin:14px 0 0;color:rgba(236,231,224,.78);text-align:justify;hyphens:auto">
+                Ask what is worth chasing first. It answers from your books, names its sources, proposes the action, and
+                stops there until you send it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div style="background:var(--color-bg)">
+        <div style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+
+          <!-- ═══ Principle ═══ -->
+          <section
+            style="padding:clamp(56px,7vw,100px) 0 clamp(48px,6vw,84px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,3fr);gap:clamp(24px,5vw,64px);align-items:end">
+            <figure style="margin:0">
+              <blockquote data-reveal
+                style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,52px);line-height:1.14;letter-spacing:-.01em;max-width:34ch;margin:0;text-indent:-.34em">
+                “A company is easiest to run when one system knows everything and hides nothing.”</blockquote>
+              <figcaption
+                style="font-size:15px;line-height:1.6;color:var(--color-neutral-700);margin:34px 0 0;text-indent:-1.104em">
+                — The principle Omnia is built on</figcaption>
+            </figure>
+            <div data-reveal data-delay="2"
+              style="border-left:2px solid var(--color-accent);padding-left:20px;font-size:14px;line-height:1.6;color:var(--color-neutral-700)">
+              Every figure on every screen can be traced to the record it came from, and every action carries the name
+              of the person who took it.</div>
+          </section>
+
+          <hr style="height:1px;border:0;margin:0;background:var(--color-text)">
+
+          <!-- ═══ Close ═══ -->
+          <section id="access"
+            style="padding:clamp(44px,5vw,76px) 0 clamp(36px,4vw,60px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:end">
+            <div>
+              <h3 data-reveal
+                style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3vw,40px);margin:0">Early
+                access</h3>
+              <p
+                style="font-size:15.5px;line-height:1.64;margin:16px 0 0;max-width:52ch;color:var(--color-neutral-800)">
+                Omnia is in build. Leave an address and we will write when the first area is ready for real books — one
+                letter, no urgency.</p>
+            </div>
+            <div data-reveal data-delay="2"
+              style="display:flex;gap:12px;align-items:stretch;max-width:480px;width:100%">
+              <input class="input" type="email" placeholder="you@company.com" aria-label="Email address"
+                style="flex:1;min-height:40px;border-radius:var(--radius-sm)">
+              <button type="button" class="btn btn-primary"
+                style="min-height:40px;border-radius:var(--radius-sm)">Request access</button>
+            </div>
+          </section>
+
+          <footer
+            style="border-top:1px solid var(--color-divider);padding:26px 0 48px;font-size:13px;color:var(--color-neutral-700);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
+            <span>Omnia — a business operating system. In build, 2026.</span>
+            <span style="display:flex;gap:20px"><a href="#areas">The six areas</a><a href="#access">Request
+                access</a></span>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+  </x-dc>
+  <script type="text/x-dc" data-dc-script data-props="{}">class Component extends DCLogic {
+  componentDidMount() {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._cleanups = [];
+
+    // ── splash ──────────────────────────────────────────
+    const splash = document.querySelector('[data-splash]');
+    if (splash) {
+      let seen = false;
+      try { seen = sessionStorage.getItem('omnia-splash-seen') === '1'; } catch (e) {}
+      const finish = () => {
+        if (splash.hasAttribute('data-done')) return;
+        splash.setAttribute('data-done', '');
+        document.body.removeAttribute('data-splash-on');
+        try { sessionStorage.setItem('omnia-splash-seen', '1'); } catch (e) {}
+        const g = setTimeout(() => splash.setAttribute('data-gone', ''), 1200);
+        this._cleanups.push(() => clearTimeout(g));
+      };
+      if (seen || reduce) {
+        splash.setAttribute('data-done', '');
+        splash.setAttribute('data-gone', '');
+      } else {
+        document.body.setAttribute('data-splash-on', '');
+        const t = setTimeout(finish, 2100);
+        const skip = () => finish();
+        addEventListener('keydown', skip, { once: true });
+        splash.addEventListener('click', skip, { once: true });
+        this._cleanups.push(() => { clearTimeout(t); removeEventListener('keydown', skip); });
+      }
+    }
+
+    // ── live ticker ─────────────────────────────────────
+    const ticks = [...document.querySelectorAll('[data-tick]')];
+    if (ticks.length && !reduce) {
+      let i = 0;
+      const step = () => {
+        ticks.forEach((t, k) => {
+          t.removeAttribute('data-active');
+          t.removeAttribute('data-past');
+          if (k === i) t.setAttribute('data-active', '');
+          else if (k === (i - 1 + ticks.length) % ticks.length) t.setAttribute('data-past', '');
+        });
+        i = (i + 1) % ticks.length;
+      };
+      step();
+      const id = setInterval(step, 3600);
+      this._cleanups.push(() => clearInterval(id));
+    }
+
+    // ── count-up figures ────────────────────────────────
+    const counted = new WeakSet();
+    const countUp = (el) => {
+      if (counted.has(el) || reduce) return;
+      counted.add(el);
+      const raw = el.textContent.trim();
+      const m = raw.match(/^(\d+)(\D*)$/);
+      if (!m) return;
+      const target = parseInt(m[1], 10), suffix = m[2] || '';
+      if (target === 0) return;
+      const dur = 900, t0 = performance.now();
+      const frame = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+        else el.textContent = raw;
+      };
+      el.textContent = '0' + suffix;
+      requestAnimationFrame(frame);
+    };
+
+    // ── parallax on the ghost numerals + scroll chrome ──
+    const ghosts = [...document.querySelectorAll('[data-ghost]')];
+    const bar = document.querySelector('[data-progress] i');
+    const nav = document.querySelector('[data-nav]');
+    let mx = 0, my = 0;
+    const onMove = (e) => {
+      mx = (e.clientX / innerWidth - 0.5) * 2;
+      my = (e.clientY / innerHeight - 0.5) * 2;
+    };
+    if (!reduce) {
+      addEventListener('mousemove', onMove, { passive: true });
+      this._cleanups.push(() => removeEventListener('mousemove', onMove));
+    }
+    const onScroll = () => {
+      const y = scrollY || document.documentElement.scrollTop || 0;
+      if (bar) {
+        const h = document.documentElement.scrollHeight - innerHeight;
+        bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
+      }
+      if (nav) { if (y > 24) nav.setAttribute('data-scrolled', ''); else nav.removeAttribute('data-scrolled'); }
+      if (!reduce) ghosts.forEach((g, k) => {
+        const dir = k % 2 ? -1 : 1;
+        g.style.transform = 'translate3d(' + (mx * 14 * dir).toFixed(2) + 'px,' +
+          (my * 10 + y * 0.05 * dir).toFixed(2) + 'px,0)';
+      });
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    const raf = setInterval(onScroll, 60);
+    this._cleanups.push(() => { removeEventListener('scroll', onScroll); clearInterval(raf); });
+    onScroll();
+
+    const reveal = el => {
+      el.setAttribute('data-shown', '');
+      if (el.hasAttribute('data-count')) countUp(el);
+      el.querySelectorAll && el.querySelectorAll('[data-count]').forEach(countUp);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { reveal(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
+    const watch = () => document
+      .querySelectorAll('[data-reveal]:not([data-shown]),[data-figure]:not([data-shown]),[data-plate]:not([data-shown])')
+      .forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < innerHeight * 0.92) reveal(el); else io.observe(el);
+      });
+    this._t = setTimeout(watch, 60);
+    this._i = setInterval(watch, 1200);
+    this._io = io;
+  }
+  componentWillUnmount() {
+    clearTimeout(this._t); clearInterval(this._i); this._io && this._io.disconnect();
+    (this._cleanups || []).forEach(fn => fn());
+  }
+}</script>
+</body>
+
+</html>
