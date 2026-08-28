@@ -3,10 +3,10 @@
 export default function Principle() {
   return (
     <section
+      className="om-grid-principle"
       style={{
         padding: "clamp(56px,7vw,100px) 0 clamp(48px,6vw,84px)",
         display: "grid",
-        gridTemplateColumns: "minmax(0,7fr) minmax(0,3fr)",
         gap: "clamp(24px,5vw,64px)",
         alignItems: "end",
       }}

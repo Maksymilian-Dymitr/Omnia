@@ -14,7 +14,7 @@ const delayById: Record<string, string | undefined> = { starter: undefined, busi
 
 export default function PricingGrid() {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: "24px", marginTop: "clamp(48px,6vw,72px)" }}>
+    <div className="om-grid-pricing" style={{ display: "grid", gap: "24px", marginTop: "clamp(48px,6vw,72px)" }}>
       {PLAN_ORDER.map((id) => {
         const plan = PLANS[id];
         const isHighlighted = id === highlighted;

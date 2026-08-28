@@ -3,7 +3,7 @@
 export default function Figures() {
   return (
     <section style={{ padding: "clamp(40px,5vw,72px) 0 clamp(34px,4vw,56px)" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: "32px" }}>
+      <div className="om-grid-figures" style={{ display: "grid", gap: "32px" }}>
         <div data-figure style={{ borderTop: "2px solid var(--color-accent)", paddingTop: "16px" }}>
           <p
             data-count

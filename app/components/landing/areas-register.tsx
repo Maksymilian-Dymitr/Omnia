@@ -58,10 +58,9 @@ export default function AreasRegister() {
           key={row.n}
           data-row
           data-reveal
-          className="hover:bg-[var(--color-accent-100)]"
+          className="om-grid-area-row hover:bg-[var(--color-accent-100)]"
           style={{
             display: "grid",
-            gridTemplateColumns: "clamp(64px,8vw,120px) minmax(0,4fr) minmax(0,6fr)",
             gap: "clamp(16px,3vw,40px)",
             alignItems: "start",
             padding: "26px 0",
@@ -88,7 +87,7 @@ export default function AreasRegister() {
               {row.subtitle}
             </span>
           </div>
-          <p style={{ fontSize: "15.5px", lineHeight: 1.64, margin: 0, color: "var(--color-neutral-800)", textAlign: "justify", hyphens: "auto" }}>
+          <p className="om-justify" style={{ fontSize: "15.5px", lineHeight: 1.64, margin: 0, color: "var(--color-neutral-800)" }}>
             {row.desc}
           </p>
         </div>

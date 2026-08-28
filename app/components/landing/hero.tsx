@@ -56,12 +56,13 @@ export default function Hero() {
             display: "flex",
             alignItems: "center",
             gap: "28px",
+            flexWrap: "wrap",
           }}
         >
           <span style={{ fontFamily: "var(--font-heading)", fontSize: "21px", fontWeight: 500, letterSpacing: ".3em" }}>
             OMNIA
           </span>
-          <nav style={{ display: "flex", gap: "24px", marginLeft: "auto", fontSize: "13.5px" }}>
+          <nav className="om-nav-links">
             <a data-underline href="#areas">The six areas</a>
             <a data-underline href="#engine">Automation</a>
             <a data-underline href="#record">The interface</a>
@@ -112,9 +113,9 @@ export default function Hero() {
         </h1>
 
         <div
+          className="om-grid-hero-copy"
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)",
             gap: "clamp(24px,5vw,80px)",
             marginTop: "clamp(36px,5vw,64px)",
             alignItems: "end",
@@ -122,14 +123,13 @@ export default function Hero() {
         >
           <p
             data-hero-3
+            className="om-justify"
             style={{
               fontSize: "17px",
               lineHeight: 1.66,
               margin: 0,
               color: "rgba(236,231,224,.8)",
               maxWidth: "52ch",
-              textAlign: "justify",
-              hyphens: "auto",
             }}
           >
             Customers, invoicing, payments and tax. The pipeline and the client portal. The boards your team works
@@ -184,9 +184,9 @@ export default function Hero() {
 
         <div
           data-hero-5
+          className="om-grid-hero-nav"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(6,minmax(0,1fr))",
             borderTop: "1px solid rgba(236,231,224,.28)",
             marginTop: "clamp(44px,6vw,88px)",
           }}

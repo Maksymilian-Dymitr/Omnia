@@ -43,6 +43,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -530,5 +531,102 @@ body[data-splash-on] [data-ghost] {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* ── responsive layout ─────────────────────────────── */
+
+.om-grid-hero-copy {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.om-grid-hero-nav {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.om-grid-figures {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.om-grid-area-row {
+  grid-template-columns: clamp(64px, 8vw, 120px) minmax(0, 4fr) minmax(0, 6fr);
+}
+
+.om-grid-interface {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.om-grid-automation {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.om-grid-principle {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+}
+
+.om-grid-close {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.om-grid-pricing {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.om-grid-signup {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+}
+
+.om-nav-links {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+  font-size: 13.5px;
+}
+
+.om-justify {
+  text-align: justify;
+  hyphens: auto;
+}
+
+@media (max-width: 768px) {
+  .om-grid-hero-copy,
+  .om-grid-area-row,
+  .om-grid-interface,
+  .om-grid-automation,
+  .om-grid-close,
+  .om-grid-pricing,
+  .om-grid-signup {
+    grid-template-columns: 1fr;
+  }
+
+  .om-grid-principle {
+    grid-template-columns: 1fr;
+  }
+
+  .om-grid-principle,
+  .om-grid-close {
+    align-items: start;
+  }
+
+  .om-grid-hero-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .om-grid-figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .om-grid-hero-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .om-nav-links {
+    display: none;
+  }
+
+  .om-justify {
+    text-align: left;
   }
 }

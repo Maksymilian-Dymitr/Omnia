@@ -51,7 +51,7 @@ export default function SignupView({ initialPlan }: { initialPlan: PlanId }) {
           <>
             <StepsIndicator step={step} />
 
-            <div style={{ display: "grid", gridTemplateColumns: "minmax(0,3fr) minmax(0,2fr)", gap: "clamp(24px,4vw,56px)", alignItems: "start" }}>
+            <div className="om-grid-signup" style={{ display: "grid", gap: "clamp(24px,4vw,56px)", alignItems: "start" }}>
               <form ref={formRef} onSubmit={handleSubmit} key={step} data-hero style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 {step === 0 && <StepAccount form={form} update={update} onNext={handleNext} />}
                 {step === 1 && <StepCompany form={form} update={update} onNext={handleNext} onBack={handleBack} />}

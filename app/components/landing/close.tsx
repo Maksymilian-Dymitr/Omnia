@@ -6,10 +6,10 @@ export default function Close() {
   return (
     <section
       id="access"
+      className="om-grid-close"
       style={{
         padding: "clamp(44px,5vw,76px) 0 clamp(36px,4vw,60px)",
         display: "grid",
-        gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)",
         gap: "clamp(24px,5vw,64px)",
         alignItems: "end",
       }}
