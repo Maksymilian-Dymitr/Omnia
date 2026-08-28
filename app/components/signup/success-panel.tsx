@@ -15,19 +15,18 @@ export default function SuccessPanel({ form, plan }: { form: FormState; plan: Pl
       </h1>
       <p style={{ fontSize: "15.5px", lineHeight: 1.64, margin: "20px 0 0", color: "var(--color-neutral-800)" }}>
         {form.company || "Your company"} has a seat on the {plan.name} plan. We&apos;ll write to {form.email} the
-        moment it&apos;s ready — starting with {form.priorityArea}, since that&apos;s what you told us matters
-        most first.
+        moment it&apos;s ready.
       </p>
       <div style={{ display: "flex", gap: "12px", marginTop: "36px", flexWrap: "wrap" }}>
-        <Link href="/" className="btn btn-primary" style={{ borderRadius: "var(--radius-sm)", textDecoration: "none" }}>
-          Back to home
+        <Link href="/dashboard" className="btn btn-primary" style={{ borderRadius: "var(--radius-sm)", textDecoration: "none" }}>
+          Go to dashboard
         </Link>
         <Link
-          href="/signin"
+          href="/"
           className="btn"
           style={{ borderRadius: "var(--radius-sm)", border: "1px solid var(--color-divider)", color: "var(--color-text)", textDecoration: "none" }}
         >
-          Sign in
+          Back to home
         </Link>
       </div>
     </div>

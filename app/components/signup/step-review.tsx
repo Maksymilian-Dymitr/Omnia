@@ -21,7 +21,6 @@ export default function StepReview({
           ["Email", form.email],
           ["Company", form.company],
           ["Team size", form.teamSize],
-          ["Priority area", form.priorityArea],
         ].map(([k, v]) => (
           <div key={k} style={{ display: "flex", justifyContent: "space-between", fontSize: "14px" }}>
             <span style={{ color: "var(--color-neutral-600)" }}>{k}</span>

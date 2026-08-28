@@ -4,7 +4,6 @@ import { fieldStyle, labelStyle } from "./field-styles";
 import type { FormState, UpdateFn } from "./types";
 
 export const TEAM_SIZES = ["Just me", "2–5", "6–20", "21–50", "51+"];
-export const AREAS = ["Run", "Grow", "Work", "Automate", "Reports", "Settings"];
 
 export default function StepCompany({
   form,
@@ -37,16 +36,6 @@ export default function StepCompany({
           {TEAM_SIZES.map((size) => (
             <option key={size} value={size}>
               {size}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label style={labelStyle}>
-        Which area matters most first?
-        <select className="input" value={form.priorityArea} onChange={update("priorityArea")} style={fieldStyle}>
-          {AREAS.map((area) => (
-            <option key={area} value={area}>
-              {area}
             </option>
           ))}
         </select>

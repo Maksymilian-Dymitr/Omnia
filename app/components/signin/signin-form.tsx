@@ -1,11 +1,31 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn, startSession } from "../../lib/demo-auth";
 
 export default function SigninForm() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const session = signIn(email, password);
+    if (!session) {
+      setError("That email or password isn't right.");
+      return;
+    }
+    setError(null);
+    startSession(session);
+    router.push("/dashboard");
+  };
+
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit}
       style={{ width: "100%", maxWidth: "380px", border: "1px solid var(--color-divider)", padding: "clamp(32px,4vw,44px)", display: "flex", flexDirection: "column", gap: "20px" }}
     >
       <div>
@@ -17,13 +37,35 @@ export default function SigninForm() {
 
       <label style={{ display: "flex", flexDirection: "column", gap: "6px", fontSize: "13px", color: "var(--color-neutral-700)" }}>
         Email
-        <input className="input" type="email" required placeholder="you@company.com" style={{ minHeight: "40px", borderRadius: "var(--radius-sm)" }} />
+        <input
+          className="input"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@company.com"
+          style={{ minHeight: "40px", borderRadius: "var(--radius-sm)" }}
+        />
       </label>
 
       <label style={{ display: "flex", flexDirection: "column", gap: "6px", fontSize: "13px", color: "var(--color-neutral-700)" }}>
         Password
-        <input className="input" type="password" required placeholder="••••••••" style={{ minHeight: "40px", borderRadius: "var(--radius-sm)" }} />
+        <input
+          className="input"
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="••••••••"
+          style={{ minHeight: "40px", borderRadius: "var(--radius-sm)" }}
+        />
       </label>
+
+      {error && (
+        <p style={{ fontSize: "13px", color: "#b3423f", margin: 0 }} role="alert">
+          {error}
+        </p>
+      )}
 
       <button type="submit" className="btn btn-primary" style={{ minHeight: "40px", borderRadius: "var(--radius-sm)", marginTop: "8px" }}>
         Sign in

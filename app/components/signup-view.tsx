@@ -2,12 +2,13 @@
 
 import { useRef, useState } from "react";
 import { PLANS, type PlanId } from "../lib/plans";
+import { startSession } from "../lib/demo-auth";
 import type { FormState } from "./signup/types";
 import Header from "./signup/header";
 import StepsIndicator from "./signup/steps-indicator";
 import SuccessPanel from "./signup/success-panel";
 import StepAccount from "./signup/step-account";
-import StepCompany, { TEAM_SIZES, AREAS } from "./signup/step-company";
+import StepCompany, { TEAM_SIZES } from "./signup/step-company";
 import StepReview from "./signup/step-review";
 import PlanSummary from "./signup/plan-summary";
 
@@ -21,7 +22,6 @@ export default function SignupView({ initialPlan }: { initialPlan: PlanId }) {
     password: "",
     company: "",
     teamSize: TEAM_SIZES[1],
-    priorityArea: AREAS[0],
   });
   const formRef = useRef<HTMLFormElement>(null);
   const plan = PLANS[planId];
@@ -37,6 +37,7 @@ export default function SignupView({ initialPlan }: { initialPlan: PlanId }) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formRef.current && !formRef.current.reportValidity()) return;
+    startSession({ name: form.name, email: form.email, company: form.company });
     setSubmitted(true);
   };
 

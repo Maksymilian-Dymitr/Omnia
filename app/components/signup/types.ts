@@ -4,7 +4,6 @@ export type FormState = {
   password: string;
   company: string;
   teamSize: string;
-  priorityArea: string;
 };
 
 export type UpdateFn = (

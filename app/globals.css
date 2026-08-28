@@ -576,6 +576,10 @@ body[data-splash-on] [data-ghost] {
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
 }
 
+.om-grid-dashboard {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .om-nav-links {
   display: flex;
   gap: 24px;
@@ -595,7 +599,8 @@ body[data-splash-on] [data-ghost] {
   .om-grid-automation,
   .om-grid-close,
   .om-grid-pricing,
-  .om-grid-signup {
+  .om-grid-signup,
+  .om-grid-dashboard {
     grid-template-columns: 1fr;
   }
 
