@@ -3,10 +3,11 @@
 // PROTOTYPE — a placeholder landing spot to prove the sign-in/sign-up
 // funnel works end-to-end. Not the real product dashboard.
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { endSession, getSession, type Session } from "../lib/demo-auth";
+import { endSession, getSession, useSession } from "../lib/demo-auth";
 
+// Static preview cards for the dashboard grid — not wired to real data.
 const AREAS = [
   { n: "01", title: "Run", desc: "Customers, invoicing, payments and tax." },
   { n: "02", title: "Grow", desc: "The pipeline and the client portal." },
@@ -18,15 +19,15 @@ const AREAS = [
 
 export default function DashboardView() {
   const router = useRouter();
-  const [session, setSession] = useState<Session | null | undefined>(undefined);
+  const session = useSession();
 
   useEffect(() => {
-    const s = getSession();
-    if (!s) {
+    // A fresh, one-off read — not the `session` value above, which reflects
+    // the SSR/hydration snapshot (always null) until useSession() resyncs a
+    // moment later. Checking that instead would redirect logged-in users too.
+    if (!getSession()) {
       router.replace("/signin");
-      return;
     }
-    setSession(s);
   }, [router]);
 
   const handleLogout = () => {
