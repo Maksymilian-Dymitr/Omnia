@@ -580,6 +580,74 @@ body[data-splash-on] [data-ghost] {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.om-grid-dashboard-shell {
+  grid-template-columns: 72px 300px minmax(0, 1fr);
+}
+
+.om-grid-dashboard-shell-solo {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
+/* The <aside> columns themselves stay unpositioned so they default to
+   align-self:stretch — their background fills the full row height
+   (as tall as the tallest sibling), not just their own content height.
+   The "stick while scrolling" behavior lives on an inner wrapper div
+   instead (.om-sticky-col), so the two concerns don't fight each other. */
+.om-sticky-col {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Only the assistant panel needs internal scroll (its message list can
+   grow) — NOT the icon rail. overflow-y:auto without overflow-x set
+   makes overflow-x compute to auto too (per spec), which would clip
+   the rail's tooltips as they escape its 72px box via position:absolute. */
+.om-sticky-col.om-scrollable {
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+/* Higher than the assistant panel's sticky column so the rail's
+   tooltips — which escape its narrow box via position:absolute — paint
+   above it instead of being covered by its own stacking context. */
+.om-sticky-col.om-rail-sticky {
+  z-index: 30;
+}
+
+.om-rail-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
+  white-space: nowrap;
+  background: #191817;
+  color: #ece7e0;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 50;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
 .om-nav-links {
   display: flex;
   gap: 24px;
@@ -600,8 +668,33 @@ body[data-splash-on] [data-ghost] {
   .om-grid-close,
   .om-grid-pricing,
   .om-grid-signup,
-  .om-grid-dashboard {
+  .om-grid-dashboard,
+  .om-grid-dashboard-shell,
+  .om-grid-dashboard-shell-solo {
     grid-template-columns: 1fr;
+  }
+
+  .om-sticky-col {
+    position: static;
+    z-index: auto;
+  }
+
+  .om-sticky-col.om-scrollable {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .om-rail-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Pointless on touch, and its layout box (even at opacity:0) can push
+     past the viewport now that the rail wraps into a row instead of a
+     column. */
+  [data-tooltip]::after {
+    content: none;
   }
 
   .om-grid-principle {
